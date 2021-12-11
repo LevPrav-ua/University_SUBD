@@ -1,0 +1,5 @@
+{
+  "Server": "localhost",
+  "Port": "5435", 
+  "Database": "admissionCommittee"
+}
