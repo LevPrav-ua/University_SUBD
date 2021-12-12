@@ -63,4 +63,15 @@ public static class Connection
             MessageBoxDefaultButton.Button1,
             MessageBoxOptions.DefaultDesktopOnly);
     }
+
+    static public void success(string success_message)
+    {
+        MessageBox.Show(
+                           success_message,
+                            "Сообщение",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+    }
 }

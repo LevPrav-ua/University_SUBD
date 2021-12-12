@@ -32,11 +32,9 @@ namespace University_SUBD
             this.surname = new System.Windows.Forms.TextBox();
             this.second_name = new System.Windows.Forms.TextBox();
             this.name = new System.Windows.Forms.TextBox();
-            this.city = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,13 +68,6 @@ namespace University_SUBD
             this.name.Size = new System.Drawing.Size(250, 27);
             this.name.TabIndex = 2;
             // 
-            // city
-            // 
-            this.city.Location = new System.Drawing.Point(138, 200);
-            this.city.Name = "city";
-            this.city.Size = new System.Drawing.Size(250, 27);
-            this.city.TabIndex = 3;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -103,15 +94,6 @@ namespace University_SUBD
             this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 7;
             this.label3.Text = "Отчество";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 203);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 20);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Город";
             // 
             // label6
             // 
@@ -168,7 +150,7 @@ namespace University_SUBD
             // 
             // send
             // 
-            this.send.Location = new System.Drawing.Point(418, 307);
+            this.send.Location = new System.Drawing.Point(414, 270);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(149, 51);
             this.send.TabIndex = 17;
@@ -178,7 +160,7 @@ namespace University_SUBD
             // 
             // passport
             // 
-            this.passport.Location = new System.Drawing.Point(138, 247);
+            this.passport.Location = new System.Drawing.Point(138, 201);
             this.passport.Name = "passport";
             this.passport.Size = new System.Drawing.Size(250, 27);
             this.passport.TabIndex = 18;
@@ -186,7 +168,7 @@ namespace University_SUBD
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 250);
+            this.label9.Location = new System.Drawing.Point(23, 204);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 20);
             this.label9.TabIndex = 19;
@@ -194,7 +176,7 @@ namespace University_SUBD
             // 
             // close
             // 
-            this.close.Location = new System.Drawing.Point(601, 307);
+            this.close.Location = new System.Drawing.Point(597, 270);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(121, 51);
             this.close.TabIndex = 20;
@@ -206,7 +188,7 @@ namespace University_SUBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 394);
+            this.ClientSize = new System.Drawing.Size(755, 342);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.passport);
@@ -217,11 +199,9 @@ namespace University_SUBD
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.city);
             this.Controls.Add(this.name);
             this.Controls.Add(this.second_name);
             this.Controls.Add(this.surname);
@@ -237,11 +217,9 @@ namespace University_SUBD
         private System.Windows.Forms.TextBox surname;
         private System.Windows.Forms.TextBox second_name;
         private System.Windows.Forms.TextBox name;
-        private System.Windows.Forms.TextBox city;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

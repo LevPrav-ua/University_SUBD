@@ -13,7 +13,7 @@ namespace University_SUBD
             db = new Database();
             db.Server = "localhost";
             db.Port = 5435;
-            db.database = "admissionCommittee";
+            db.database = "admissionCommittee2";
             user = new User("postgres", "postgres", "postgres");
 
         }

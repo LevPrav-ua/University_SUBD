@@ -14,12 +14,9 @@ namespace University_SUBD
         Dictionary<string, string> fac_id = new Dictionary<string, string>();
         Dictionary<string, List<string>> cath_id = new Dictionary<string, List<string>>();
         Dictionary<string, List<string>> group_id = new Dictionary<string, List<string>>();
-        int last_id = 0;
-        public add_Abitur(int last_id)
+        public add_Abitur()
         {
             InitializeComponent();
-
-            this.last_id = last_id;
 
             string sql = ("SELECT facultyid, faculty from faculties");
 
@@ -102,18 +99,17 @@ namespace University_SUBD
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var cmd = new NpgsqlCommand("INSERT INTO entrant VALUES (@id, @pass, @surname, @name, @second_name," +
+            using (var cmd = new NpgsqlCommand("INSERT INTO entrant VALUES (@pass, @surname, @name, @second_name," +
                 "@f_id, @group)", Connection.connection))
             {
                 try
                 {
-                    if (last_id == 0 || passport.Text == "" || surname.Text == ""
+                    if ( passport.Text == "" || surname.Text == ""
                         || name.Text == "" ||second_name.Text == "" || 
                         faculty.Text == "" || group.Text == "")
                     {
                         throw new Exception("Заполните поля");
                     }
-                    cmd.Parameters.AddWithValue("id", ++last_id);
                     cmd.Parameters.AddWithValue("pass", passport.Text);
                     cmd.Parameters.AddWithValue("surname", surname.Text);
                     cmd.Parameters.AddWithValue("name", name.Text);
@@ -124,19 +120,32 @@ namespace University_SUBD
                
                     if (cmd.ExecuteNonQuery() != -1)
                     {
-                        MessageBox.Show(
-           "Абитуриент успешно добавлен",
-            "Сообщение",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information,
-            MessageBoxDefaultButton.Button1,
-            MessageBoxOptions.DefaultDesktopOnly);
+                        Connection.success("Абитуриент успешно добавлен");
                     }
-                    clean();
                 }
                 catch (Exception err)
                 {
                     Connection.error(err.Message);
+                    return;
+                }
+            }
+            using (var cmd = new NpgsqlCommand("insert into examlist(entrantPassport, " +
+                "firstmark, secondmark, thirdmark)" +
+                " values (@passport, 2, 2, 2) ", Connection.connection))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("passport", passport.Text);
+                    if (cmd.ExecuteNonQuery() != -1)
+                    {
+                        Connection.success("Абитуриент успешно добавлен в список экзаменов");
+                        clean();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Connection.error(ex.Message);
                 }
             }
         }
@@ -154,6 +163,7 @@ namespace University_SUBD
             second_name.Text = "";
             faculty.Text = "";
             group.Text = "";
+            cathedra.Text = "";
         }
     }
 }
