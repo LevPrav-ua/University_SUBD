@@ -44,6 +44,7 @@ namespace University_SUBD
             {
                 Connection.error("Поля не могут быть пустыми");
             }
+            this.Close();
         }
 
     }

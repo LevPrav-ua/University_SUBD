@@ -31,7 +31,9 @@ namespace University_SUBD
         private void entrant_Click(object sender, EventArgs e)
         {
             Table.ReadOnly = false;
-            string sql = ("SELECT * from entrant");
+            string sql = ("SELECT passport as Паспорт , lastname as Фамилия, " +
+                "firstname as Имя, middlename as Отчество, facultyid ," +
+                "groupnumber as \"Номер группы\" from entrant");
             NpgsqlDataAdapter adapter = Connection.request_adapter(sql);
             ds.Reset();
             adapter.Fill(ds);
@@ -111,7 +113,7 @@ namespace University_SUBD
         private void faculty_Click(object sender, EventArgs e)
         {
             buttons_set(false);
-            string sql = ("SELECT * from faculties");
+            string sql = ("SELECT facultyid, faculty as Факультет from faculties");
             NpgsqlDataAdapter adapter = Connection.request_adapter(sql);
             ds.Reset();
             adapter.Fill(ds);
@@ -166,7 +168,9 @@ namespace University_SUBD
         private void exams_Click(object sender, EventArgs e)
         {
             buttons_set(false);
-            string sql = ("SELECT * from examlist");
+            string sql = ("SELECT examlistnumber, entrantpassport as \"Паспорт абитуриента\", " +
+                "firstmark as \"Оценка 1\", secondmark as \"Оценка 2\", " +
+                "thirdmark as \"Оценка 3\"  from examlist");
             NpgsqlDataAdapter adapter = Connection.request_adapter(sql);
             ds.Reset();
             adapter.Fill(ds);
@@ -194,10 +198,10 @@ namespace University_SUBD
                     int s_mark = Convert.ToInt32(Table[3, current_row].Value.ToString());
                     int t_mark = Convert.ToInt32(Table[4, current_row].Value.ToString());
 
-                    if (f_mark < 1 || s_mark < 1 || t_mark < 1 ||
+                    if (f_mark < 2 || s_mark < 2 || t_mark < 2 ||
                         f_mark > 5 || s_mark > 5 || t_mark > 5)
                     {
-                        throw new Exception("Оценка выставляется от 1 до 5");
+                        throw new Exception("Оценка выставляется от 2 до 5");
                     }
                     cmd.Parameters.AddWithValue("el_num", el_num);
                     cmd.Parameters.AddWithValue("f_mark", f_mark);
@@ -364,7 +368,7 @@ namespace University_SUBD
                         subject[key] = new int[4];
                     }
                     int mark = Convert.ToInt32(reader.GetValue(3 + (line % 3)).ToString());
-                    if (mark > 2)
+                    if (mark >= 2)
                     {
                         subject[key][mark - 2] += 1;
                         line++;
@@ -372,19 +376,19 @@ namespace University_SUBD
                 }
             }
 
-            writer.WriteLine("--------------------------------------");
-            writer.WriteLine("Название предмета".PadRight(20) + " | 2 | 3 | 4 | 5 |");
-            writer.WriteLine("--------------------------------------");
+            writer.WriteLine("------------------------------------------");
+            writer.WriteLine("Название предмета".PadRight(20) + " | 2  | 3  | 4  | 5  |");
+            writer.WriteLine("------------------------------------------");
             foreach (string key in subject.Keys)
             {
                 writer.Write(key.PadRight(20) + " |");
                 for(int i = 0; i < 4; i++)
                 {
-                    writer.Write(" " + subject[key][i] + " |");
+                    writer.Write((" " + subject[key][i]).PadRight(4) + "|");
                 }
                 writer.Write("\n");
             }
-            writer.WriteLine("--------------------------------------");
+            writer.WriteLine("------------------------------------------");
             writer.Write("\n\n");
             reader.Close();
 
